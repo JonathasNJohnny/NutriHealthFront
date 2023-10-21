@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <>
       <Row className="justify-content-center">
-        <Col className="col-auto">
+        <Col className="col-auto" style={{ marginTop: "10px" }}>
           <TituloNutri>Nutri &</TituloNutri>
           <TituloHealth>Health</TituloHealth>
           <Subtitulo>Nutrição e Saúde Lado a Lado</Subtitulo>

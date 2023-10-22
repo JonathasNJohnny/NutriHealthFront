@@ -1,15 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../Pages/Login";
-import { Container } from "react-bootstrap";
+import MenuInicialAdministrador from "../Pages/SistemaAdministrador/MenuInicialAdministrador";
 
 function Rotas() {
   return (
     <Router>
-      <Container fluid>
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
+      <Routes>
+        <Route
+          path="/menu/administrador"
+          element={<MenuInicialAdministrador />}
+        />
+      </Routes>
     </Router>
   );
 }

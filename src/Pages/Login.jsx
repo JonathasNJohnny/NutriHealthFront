@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import {
   TituloNutri,
   TituloHealth,
@@ -10,10 +10,17 @@ import {
   ButtonConfirmaLogin,
   DivButtonLogin,
 } from "../StyledComponents/PagLoginStyledComps";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const autenticacaoDeDados = () => {
+    navigate("/menu/administrador");
+  };
+
   return (
-    <>
+    <Container fluid>
       <Row className="justify-content-center">
         <Col className="col-auto" style={{ marginTop: "10px" }}>
           <TituloNutri>Nutri &</TituloNutri>
@@ -31,7 +38,13 @@ const Login = () => {
             placeholder="Senha"
           />
           <DivButtonLogin>
-            <ButtonConfirmaLogin>Confirmar</ButtonConfirmaLogin>
+            <ButtonConfirmaLogin
+              onClick={() => {
+                autenticacaoDeDados();
+              }}
+            >
+              Confirmar
+            </ButtonConfirmaLogin>
           </DivButtonLogin>
 
           <AvisoEsqueceuSenha>
@@ -40,7 +53,7 @@ const Login = () => {
           </AvisoEsqueceuSenha>
         </ColQuadroLogin>
       </Row>
-    </>
+    </Container>
   );
 };
 

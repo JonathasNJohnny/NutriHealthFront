@@ -1,16 +1,15 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import {
   BoxOpcaoMenu,
   ContainerPrincipalPagina,
   DivOpcaoMenu,
   DivTituloMenu,
-  RowConteudoPagina,
   TitulosMenus,
   IconStyled,
+  RowMenusIniciais,
 } from "../../StyledComponents/StyledStructPages";
 import HeaderPrincipal from "../../Components/HeaderPrincipal";
-import { Icon } from "@iconify/react";
 import { NavLink } from "react-router-dom";
 
 const MenuInicialAdministrador = () => {
@@ -21,10 +20,10 @@ const MenuInicialAdministrador = () => {
         PaginaDoSistema={"Menu"}
       />
 
-      <RowConteudoPagina className="justify-content-center">
+      <RowMenusIniciais className="justify-content-center">
         <Col className="col-auto">
           <DivOpcaoMenu>
-            <NavLink to={"/"}>
+            <NavLink to={"/administrador/cadastrar-usuario"}>
               <BoxOpcaoMenu>
                 <IconStyled
                   className="icon-menu"
@@ -39,7 +38,7 @@ const MenuInicialAdministrador = () => {
             <TitulosMenus>Gerenciamento de Usuários</TitulosMenus>
           </DivTituloMenu>
         </Col>
-      </RowConteudoPagina>
+      </RowMenusIniciais>
     </ContainerPrincipalPagina>
   );
 };

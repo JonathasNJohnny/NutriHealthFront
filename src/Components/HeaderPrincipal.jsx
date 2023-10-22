@@ -26,10 +26,10 @@ const HeaderPrincipal = ({ TipoDeUsuarioSistema, PaginaDoSistema }) => {
             />
           </BoxIconHeader>
           <BoxIconHeader>
-            <Icon icon="fluent-mdl2:mail" color="white" width={35} />
+            <Icon icon="octicon:mail-16" color="white" width={35} />
           </BoxIconHeader>
           <BoxIconHeader style={{ marginRight: "0px" }}>
-            <Icon icon="icon-park-outline:power" color="white" width={30} />
+            <Icon icon="ph:power-bold" color="white" width={35} />
           </BoxIconHeader>
         </BoxInfosHeaderPrincipal>
       </ColHeaderPrincipal>

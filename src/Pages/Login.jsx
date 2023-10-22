@@ -18,8 +18,10 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); //Navigate usado apenas para conferir o fluxo de paginas
 
   const handleLogin = async () => {
+    navigate("/administrador/menu");
     try {
       const response = await axios.get("/api/login", {
         params: {

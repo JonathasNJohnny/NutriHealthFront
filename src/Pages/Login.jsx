@@ -58,7 +58,13 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <DivButtonLogin>
-            <ButtonConfirmaLogin>Confirmar</ButtonConfirmaLogin>
+            <ButtonConfirmaLogin
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Confirmar
+            </ButtonConfirmaLogin>
           </DivButtonLogin>
 
           <AvisoEsqueceuSenha>

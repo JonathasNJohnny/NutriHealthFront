@@ -21,7 +21,6 @@ const Login = () => {
   const navigate = useNavigate(); //Navigate usado apenas para conferir o fluxo de paginas
 
   const handleLogin = async () => {
-    navigate("/administrador/menu");
     try {
       const response = await axios.get("/api/login", {
         params: {
@@ -30,8 +29,16 @@ const Login = () => {
         },
       });
 
-      const data = response.data;
-      setMessage(data.message);
+      const data = JSON.parse(response.data.message);
+      if (data !== null) {
+        setMessage("Seja bem vindo ao perfil de " + data.user_type);
+        if (data.user_type == 'Administrador') {
+          navigate("/administrador/menu");
+        }
+      }
+      else {
+        setMessage("Nome de usuário ou senha estão incorretos");
+      }
     } catch (error) {}
   };
 

@@ -7,6 +7,7 @@ import {
   BoxGroupInput,
   ButtonSalvar,
   DivButtonSalvar,
+  FormSelectPagsGerais,
 } from "../../StyledComponents/StyledStructPages";
 import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { Col, Row } from "react-bootstrap";
@@ -72,6 +73,14 @@ const CadastroUsuarios = () => {
           <BoxGroupInput>
             <TituloInput>Email</TituloInput>
             <FormControlPagsGerais />
+          </BoxGroupInput>
+
+          <BoxGroupInput>
+            <TituloInput>Tipo de Usuario</TituloInput>
+            <FormSelectPagsGerais>
+              <option value={1}>Médico</option>
+              <option value={2}>Recepcionista</option>
+            </FormSelectPagsGerais>
           </BoxGroupInput>
 
           <DivButtonSalvar>

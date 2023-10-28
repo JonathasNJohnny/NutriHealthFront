@@ -23,7 +23,7 @@ const MenuInicialAdministrador = () => {
       <RowMenusIniciais className="justify-content-center">
         <Col className="col-auto">
           <DivOpcaoMenu>
-            <NavLink to={"/administrador/cadastrar-usuario"}>
+            <NavLink to={"/administrador/lista-usuarios"}>
               <BoxOpcaoMenu>
                 <IconStyled
                   className="icon-menu"

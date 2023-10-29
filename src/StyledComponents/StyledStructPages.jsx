@@ -129,6 +129,7 @@ export const IconStyled = styled(Icon)`
 export const TitulosMenus = styled.h4`
   color: #6f3f2d;
   font-size: 1.6em;
+  font-weight: 600;
 `;
 
 export const DivTituloMenu = styled.div`
@@ -151,6 +152,32 @@ export const FormControlPagsGerais = styled(FormControl)`
     box-shadow: none;
     border: none;
     color: #6f3f2d;
+  }
+
+  &.textarea_form {
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    height: 244px;
+  }
+
+  &.textarea_form:focus {
+    outline: none;
+  }
+
+  /* Definir a largura da barra de rolagem */
+  &::-webkit-scrollbar {
+    width: 5px; /* Substitua pelo valor desejado */
+  }
+
+  /* Definir a cor do track (fundo) e thumb (ponteiro) */
+  &::-webkit-scrollbar-thumb {
+    background-color: #6f3f2d; /* Cor do thumb */
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f2f2f2; /* Cor do track */
+    border-radius: 20px;
   }
 `;
 

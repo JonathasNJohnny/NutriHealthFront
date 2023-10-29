@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import axios from "axios"; // Importe a biblioteca axios.
 import {
@@ -32,11 +32,10 @@ const Login = () => {
       const data = JSON.parse(response.data.message);
       if (data !== null) {
         setMessage("Seja bem vindo ao perfil de " + data.user_type);
-        if (data.user_type == 'Administrador') {
+        if (data.user_type === "Administrador") {
           navigate("/administrador/menu");
         }
-      }
-      else {
+      } else {
         setMessage("Nome de usuário ou senha estão incorretos");
       }
     } catch (error) {}

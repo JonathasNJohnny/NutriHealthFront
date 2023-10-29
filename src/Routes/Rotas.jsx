@@ -3,6 +3,10 @@ import Login from "../Pages/Login";
 import MenuInicialAdministrador from "../Pages/SistemaAdministrador/MenuInicialAdministrador";
 import CadastroUsuarios from "../Pages/SistemaAdministrador/CadastroUsuarios";
 import ListaCadastros from "../Pages/SistemaAdministrador/ListaCadastros";
+import MenuInicialRecepcionista from "../Pages/SistemaRecepcionista/MenuInicialRecepcionista";
+import AgendarConsulta from "../Pages/SistemaRecepcionista/AgendarConsulta";
+import CadastroPaciente from "../Pages/SistemaRecepcionista/CadastroPaciente";
+import ListaPacientes from "../Pages/SistemaRecepcionista/ListaPacientes";
 
 function Rotas() {
   return (
@@ -26,6 +30,34 @@ function Rotas() {
         <Route
           path="/administrador/lista-usuarios"
           element={<ListaCadastros />}
+        />
+      </Routes>
+
+      <Routes>
+        <Route
+          path="/recepcionista/menu"
+          element={<MenuInicialRecepcionista />}
+        />
+      </Routes>
+
+      <Routes>
+        <Route
+          path="/recepcionista/agendar-consulta"
+          element={<AgendarConsulta />}
+        />
+      </Routes>
+
+      <Routes>
+        <Route
+          path="/recepcionista/cadastrar-paciente"
+          element={<CadastroPaciente />}
+        />
+      </Routes>
+
+      <Routes>
+        <Route
+          path="/recepcionista/lista-pacientes"
+          element={<ListaPacientes />}
         />
       </Routes>
     </Router>

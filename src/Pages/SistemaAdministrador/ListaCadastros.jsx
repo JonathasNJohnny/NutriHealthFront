@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   ContainerPrincipalPagina,
   ColLista,
@@ -12,6 +13,26 @@ import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { Col, Row } from "react-bootstrap";
 
 const ListaCadastros = () => {
+  const [users, setUsers] = useState([]);
+
+  const listUsers = async () => {
+    try {
+      const response = await axios.get("/api/getUsers");
+      if (response.status === 200) {
+        const data = response.data;
+        setUsers(data);
+      } else {
+        console.error("Erro ao buscar os usuários.");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar os usuários: " + error);
+    }
+  };
+  
+  useEffect(() => {
+    listUsers();
+  }, []);
+
   return (
     <ContainerPrincipalPagina fluid>
       <HeaderPrincipal
@@ -30,136 +51,13 @@ const ListaCadastros = () => {
               </thead>
 
               <tbody>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
-                <tr>
-                  <td>Engels</td>
-                  <td>Patos - PB - Rua Teste</td>
-                  <td>83999999999</td>
-                </tr>
+                {users.map((user) => (
+                  <tr key={user.user_id}>
+                    <td>{user.username}</td>
+                    <td>{user.city} - {user.state}<br/> {user.neighborhood} - {user.street}</td>
+                    <td>{user.number}</td>
+                  </tr>
+                ))}
               </tbody>
             </TableStyled>
           </DivConteudoLista>

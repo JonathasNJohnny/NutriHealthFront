@@ -148,6 +148,11 @@ export const FormControlPagsGerais = styled(FormControl)`
   height: 40px;
   color: #6f3f2d;
   font-size: 1.2em;
+
+  &::placeholder {
+    color: #6f3f2d;
+  }
+
   &:focus {
     box-shadow: none;
     border: none;

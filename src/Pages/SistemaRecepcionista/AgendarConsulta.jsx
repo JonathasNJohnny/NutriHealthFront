@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ContainerPrincipalPagina,
   FormControlPagsGerais,
@@ -12,13 +12,46 @@ import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { Col, Row } from "react-bootstrap";
 import { FormatData } from "../../Utils/FormatacaoDeDados/FormatData";
 import { FormatHorario } from "../../Utils/FormatacaoDeDados/FormatHorario";
+import AutoComplete from "../../Components/AutoComplete";
 
 const AgendarConsulta = () => {
+  const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([
+    //APENAS UMA BASE, AS OPTIONS VIRAO DO BANCO DE DADOS
+    { nome: "Engels", id: 0 },
+    { nome: "João Vitor", id: 1 },
+    { nome: "Kauã", id: 2 },
+    { nome: "Danilo", id: 3 },
+    { nome: "Jonathas", id: 4 },
+    { nome: "Teste 1", id: 5 },
+    { nome: "Teste 2", id: 6 },
+    { nome: "Teste 3", id: 7 },
+  ]);
+
+  const [optionsAutoComplete2, setOptionsAutoComplete2] = useState([
+    //APENAS UMA BASE, AS OPTIONS VIRAO DO BANCO DE DADOS
+    { nome: "Teste 2", id: 0 },
+    { nome: "Teste 3", id: 1 },
+    { nome: "Teste 4", id: 2 },
+    { nome: "Teste 5", id: 3 },
+    { nome: "Teste 6", id: 4 },
+    { nome: "Teste 7", id: 5 },
+    { nome: "Teste 8", id: 6 },
+    { nome: "Teste 9", id: 7 },
+  ]);
+
+  const handleSelectOptionSearch1 = (value) => {
+    console.log(value);
+  };
+
+  const handleSelectOptionSearch2 = (value) => {
+    console.log(value);
+  };
+
   return (
     <ContainerPrincipalPagina fluid>
       <HeaderPrincipal
-        TipoDeUsuarioSistema={"Administrador"}
-        PaginaDoSistema={"Cadastro de Usuários"}
+        TipoDeUsuarioSistema={"Recepcionista"}
+        PaginaDoSistema={"Agendamento de consultas"}
       />
 
       <RowConteudoPagina>
@@ -57,12 +90,18 @@ const AgendarConsulta = () => {
 
           <BoxGroupInput>
             <TituloInput>Paciente</TituloInput>
-            <FormControlPagsGerais />
+            <AutoComplete
+              options={optionsAutoComplete1}
+              handleSelectOptionSearch={handleSelectOptionSearch1}
+            />
           </BoxGroupInput>
 
           <BoxGroupInput>
             <TituloInput>Médico</TituloInput>
-            <FormControlPagsGerais />
+            <AutoComplete
+              options={optionsAutoComplete2}
+              handleSelectOptionSearch={handleSelectOptionSearch2}
+            />
           </BoxGroupInput>
         </Col>
         <Col md={6}>

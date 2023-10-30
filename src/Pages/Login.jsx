@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import axios from "axios"; // Importe a biblioteca axios.
+import axios from "axios";
 import {
   TituloNutri,
   TituloHealth,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import axios from "axios"; // Importe a biblioteca axios.
+import axios from "axios";
 import {
   TituloNutri,
   TituloHealth,
@@ -18,7 +18,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); //Navigate usado apenas para conferir o fluxo de paginas
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {

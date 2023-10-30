@@ -13,14 +13,20 @@ import {
   MessageLoginProblem,
 } from "../StyledComponents/PagLoginStyledComps";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); //Navigate usado apenas para conferir o fluxo de paginas
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
+    //ESSE É O OBJETO E O METODO QUE CHAMA O TOAST
+    toast.warning("Toast de Teste", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    //--------------------------------------------
     try {
       const response = await axios.get("/api/login", {
         params: {
@@ -43,6 +49,20 @@ const Login = () => {
 
   return (
     <Container fluid>
+      {/* Basta Colocar o toast container em QUALQUER lugar do componente para que o toast funcione */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      {/* //------------------------------------------------------ */}
       <Row className="justify-content-center">
         <Col className="col-auto" style={{ marginTop: "10px" }}>
           <TituloNutri>Nutri &</TituloNutri>

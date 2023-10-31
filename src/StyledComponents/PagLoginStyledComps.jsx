@@ -108,15 +108,15 @@ export const DivButtonLogin = styled.div`
 
 export const ButtonConfirmaLogin = styled.button`
   border: none;
-  background-color: #f9d0c1;
+  background-color: #6f3f2d;
   border-radius: 20px;
   padding: 10px;
   transition: 0.4s;
-  color: #6f3f2d;
+  color: #ffff;
   font-weight: 600;
 
   &:hover {
-    background-color: #6f3f2d;
+    background-color: #8b3516;
     color: white;
   }
 `;

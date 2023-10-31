@@ -10,7 +10,6 @@ import {
   AvisoEsqueceuSenha,
   ButtonConfirmaLogin,
   DivButtonLogin,
-  MessageLoginProblem,
   DivQuadroLogin,
   ColQuadroBemVindo,
   DivQuadroBemVindo,
@@ -27,11 +26,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    //ESSE É O OBJETO E O METODO QUE CHAMA O TOAST
-    toast.warning("Toast de Teste", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-    //--------------------------------------------
     try {
       const response = await axios.get("/api/login", {
         params: {
@@ -42,19 +36,17 @@ const Login = () => {
 
       const data = JSON.parse(response.data.message);
       if (data !== null) {
-        setMessage("Seja bem vindo ao perfil de " + data.user_type);
         if (data.user_type === "Administrador") {
           navigate("/administrador/menu");
         }
       } else {
-        setMessage("Nome de usuário ou senha estão incorretos");
+        toast.error("Falha no login. Nome de usuário ou senha incorretos", {position: toast.POSITION.TOP_RIGHT, });
       }
     } catch (error) {}
   };
 
   return (
     <Container id="container_login" fluid>
-      {/* Basta Colocar o toast container em QUALQUER lugar do componente para que o toast funcione */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -67,7 +59,6 @@ const Login = () => {
         pauseOnHover
         theme="colored"
       />
-      {/* //------------------------------------------------------ */}
       <Row>
         <ColQuadroBemVindo md={6}>
           <DivQuadroBemVindo>
@@ -122,10 +113,6 @@ const Login = () => {
               Esqueceu sua senha?
               <span style={{ cursor: "pointer" }}> Clique Aqui</span>
             </AvisoEsqueceuSenha>
-
-            <MessageLoginProblem>
-              {message && <div>{message}</div>}
-            </MessageLoginProblem>
           </DivQuadroLogin>
         </ColQuadroLogin>
       </Row>

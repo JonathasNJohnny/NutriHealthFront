@@ -15,6 +15,8 @@ import { FormatHorario } from "../../Utils/FormatacaoDeDados/FormatHorario";
 import AutoComplete from "../../Components/AutoComplete";
 
 const AgendarConsulta = () => {
+  const [teclaPressionada, setTeclaPressionada] = useState("");
+
   const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([
     //APENAS UMA BASE, AS OPTIONS VIRAO DO BANCO DE DADOS
     { nome: "Engels", id: 0 },
@@ -62,8 +64,9 @@ const AgendarConsulta = () => {
                 <TituloInput>Data</TituloInput>
                 <FormControlPagsGerais
                   maxLength="10"
-                  onKeyDown={(e) => {
-                    if (e.key !== "Backspace") {
+                  onKeyDown={(e) => setTeclaPressionada(e.key)}
+                  onChange={(e) => {
+                    if (teclaPressionada !== "Backspace") {
                       const valorFormatado = FormatData(e.target.value);
                       e.target.value = valorFormatado;
                     }
@@ -77,8 +80,9 @@ const AgendarConsulta = () => {
                 <TituloInput>Horário</TituloInput>
                 <FormControlPagsGerais
                   maxLength="5"
-                  onKeyDown={(e) => {
-                    if (e.key !== "Backspace") {
+                  onKeyDown={(e) => setTeclaPressionada(e.key)}
+                  onChange={(e) => {
+                    if (teclaPressionada !== "Backspace") {
                       const valorFormatado = FormatHorario(e.target.value);
                       e.target.value = valorFormatado;
                     }

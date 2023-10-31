@@ -13,6 +13,7 @@ import {
 import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { Col, Row } from "react-bootstrap";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const CadastroUsuarios = () => {
   const [userData, setUserData] = useState({
@@ -37,10 +38,14 @@ const CadastroUsuarios = () => {
       .post("/api/createUser", userData)
       .then((response) => {
         console.log(response.data);
-        //Aqui o response.data pode retornar 3 valores(1, 2 ou 3), e detalhe, eles vem em String, deixei o console.log pra vc dar uma olhada, os valores podem ser.
-        //1: Esse valor indica que o usuário foi criado com sucesso.
-        //2: Esse valor indica que já existe um usuário cadastro com esse nome
-        //3: Esse valor indica que houve um erro desconhecido
+        if (response.data == 1) {
+          toast.success("Usuário cadastrado com sucesso", {position: toast.POSITION.TOP_RIGHT, });
+        }
+        else if (response.data == 2) {
+          toast.warning("Usuário já cadastrado no sistema!", {position: toast.POSITION.TOP_RIGHT, });
+        } else {
+          toast.error("Erro desconhecido, caso não consiga criar um usuário, contate o suporte", {position: toast.POSITION.TOP_RIGHT, });
+        }
       })
       .catch((error) => {
         console.error("Erro ao criar usuário: " + error);
@@ -49,6 +54,18 @@ const CadastroUsuarios = () => {
 
   return (
     <ContainerPrincipalPagina fluid>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Administrador"}
         PaginaDoSistema={"Cadastro de Usuários"}

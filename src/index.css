@@ -8,6 +8,11 @@ body#corpo,
 html {
   margin: 0;
   height: 100%;
-  background-color: #f9d0c1;
   min-width: 577px;
+}
+
+div#container_login {
+  background-image: url("/src/images/backgroundLogin.jpg");
+  background-size: cover;
+  min-height: 100vh;
 }

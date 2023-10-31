@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import axios from "axios";
 import {
   TituloNutri,
@@ -11,9 +11,14 @@ import {
   ButtonConfirmaLogin,
   DivButtonLogin,
   MessageLoginProblem,
+  DivQuadroLogin,
+  ColQuadroBemVindo,
+  DivQuadroBemVindo,
+  ButtonSignUp,
 } from "../StyledComponents/PagLoginStyledComps";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { Icon } from "@iconify/react";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -48,7 +53,7 @@ const Login = () => {
   };
 
   return (
-    <Container fluid>
+    <Container id="container_login" fluid>
       {/* Basta Colocar o toast container em QUALQUER lugar do componente para que o toast funcione */}
       <ToastContainer
         position="top-right"
@@ -63,46 +68,65 @@ const Login = () => {
         theme="colored"
       />
       {/* //------------------------------------------------------ */}
-      <Row className="justify-content-center">
-        <Col className="col-auto" style={{ marginTop: "10px" }}>
-          <TituloNutri>Nutri &</TituloNutri>
-          <TituloHealth>Health</TituloHealth>
-          <Subtitulo>Nutrição e Saúde Lado a Lado</Subtitulo>
-        </Col>
-      </Row>
+      <Row>
+        <ColQuadroBemVindo md={6}>
+          <DivQuadroBemVindo>
+            <h1>Bem Vindo!</h1>
+            <p>
+              Para acessar seu perfil informe seus dados nos campos de login.
+              <br />
+              Caso ainda não tenha uma conta no site, e deseje criá-la
+              <br />
+              solicite a criaçao de uma conta clicando no botão abaixo.
+            </p>
+            <DivButtonLogin>
+              <ButtonSignUp>Cadastre-se</ButtonSignUp>
+            </DivButtonLogin>
+          </DivQuadroBemVindo>
+        </ColQuadroBemVindo>
+        <ColQuadroLogin md={6}>
+          <DivQuadroLogin>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div>
+                <TituloNutri>Nutri &</TituloNutri>
+                <TituloHealth>Health</TituloHealth>
+              </div>
+              <Icon width={115} icon="vaadin:pyramid-chart" color="#6f3f2d" />
+            </div>
 
-      <Row className="justify-content-center" style={{ marginTop: "40px" }}>
-        <ColQuadroLogin md={5}>
-          <FormControlPagLogin
-            placeholder="Login"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <FormControlPagLogin
-            type="password"
-            style={{ marginTop: "15px" }}
-            placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <DivButtonLogin>
-            <ButtonConfirmaLogin
-              onClick={() => {
-                handleLogin();
-              }}
-            >
-              Confirmar
-            </ButtonConfirmaLogin>
-          </DivButtonLogin>
+            <Subtitulo>Nutrição e Saúde Lado a Lado</Subtitulo>
 
-          <AvisoEsqueceuSenha>
-            Esqueceu sua senha?
-            <span style={{ cursor: "pointer" }}> Clique Aqui</span>
-          </AvisoEsqueceuSenha>
+            <FormControlPagLogin
+              placeholder="Login"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <FormControlPagLogin
+              type="password"
+              style={{ marginTop: "15px" }}
+              placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <DivButtonLogin>
+              <ButtonConfirmaLogin
+                onClick={() => {
+                  handleLogin();
+                }}
+              >
+                Confirmar
+              </ButtonConfirmaLogin>
+            </DivButtonLogin>
 
-          <MessageLoginProblem>
-            {message && <div>{message}</div>}
-          </MessageLoginProblem>
+            <AvisoEsqueceuSenha>
+              Esqueceu sua senha?
+              <span style={{ cursor: "pointer" }}> Clique Aqui</span>
+            </AvisoEsqueceuSenha>
+
+            <MessageLoginProblem>
+              {message && <div>{message}</div>}
+            </MessageLoginProblem>
+          </DivQuadroLogin>
         </ColQuadroLogin>
       </Row>
     </Container>

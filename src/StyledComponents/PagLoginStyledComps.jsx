@@ -1,11 +1,12 @@
 import { Col, FormControl } from "react-bootstrap";
 import styled from "styled-components";
+import BackGroundLogin from "../../src/images/backgroundLogin.jpg";
 
 export const TituloNutri = styled.h1`
   text-transform: uppercase;
   color: #6f3f2d;
   font-size: 3.5em;
-  padding-left: 57px;
+  text-align: center;
 `;
 
 export const TituloHealth = styled.h1`
@@ -13,16 +14,57 @@ export const TituloHealth = styled.h1`
   margin-top: -15px;
   color: #6f3f2d;
   font-size: 3.5em;
+  text-align: center;
 `;
 
 export const Subtitulo = styled.h4`
   color: #6f3f2d;
+  text-align: center;
 `;
 
 export const ColQuadroLogin = styled(Col)`
-  background-color: #dda08a;
+  display: flex;
+  padding-top: 40px;
+  justify-content: center;
+  padding-bottom: 40px;
+  /* background-size: cover;
+  background-image: url(${BackGroundLogin});
+  background-position: -400px; */
+`;
+
+export const DivQuadroLogin = styled.div`
+  background-color: rgba(221, 160, 138, 0.5); // Cor de fundo com transparência
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 50px;
+`;
+
+export const ColQuadroBemVindo = styled(Col)`
+  background-color: rgba(111, 63, 45, 0.5); /* Cor com opacidade de 0.5 */
+  backdrop-filter: blur(10px); /* Efeito de desfoque com raio de 10 pixels */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DivQuadroBemVindo = styled.div`
+  color: #ffff;
+  width: 600px;
+
+  p,
+  h1 {
+    margin: 0;
+    text-align: center;
+  }
+
+  h1 {
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 18px;
+  }
 `;
 
 export const FormControlPagLogin = styled(FormControl)`
@@ -79,8 +121,23 @@ export const ButtonConfirmaLogin = styled.button`
   }
 `;
 
+export const ButtonSignUp = styled.button`
+  border: 1px solid #fff;
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 10px;
+  transition: 0.4s;
+  color: #ffff;
+  font-weight: 600;
+
+  &:hover {
+    color: white;
+    background-color: #f8aa8e;
+  }
+`;
+
 export const MessageLoginProblem = styled.h4`
-  color: #822E1E;
+  color: #822e1e;
   margin: 15px 0px 0px 0px;
   text-align: right;
   display: flex;

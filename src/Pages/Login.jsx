@@ -22,7 +22,6 @@ import { Icon } from "@iconify/react";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -38,6 +37,9 @@ const Login = () => {
       if (data !== null) {
         if (data.user_type === "Administrador") {
           navigate("/administrador/menu");
+        }
+        else if (data.user_type === "Recepcionista") {
+          navigate("/recepcionista/menu");
         }
       } else {
         toast.error("Falha no login. Nome de usuário ou senha incorretos", {position: toast.POSITION.TOP_RIGHT, });

@@ -52,7 +52,7 @@ const ListaCadastros = () => {
 
               <tbody>
                 {users.map((user) => (
-                  <tr key={user.user_id}>
+                  <tr key={user.userID}>
                     <td>{user.username}</td>
                     <td>{user.city} - {user.state}<br/> {user.neighborhood} - {user.street}</td>
                     <td>{user.number}</td>

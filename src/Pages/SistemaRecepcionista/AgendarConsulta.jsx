@@ -14,12 +14,20 @@ import { Col, Row } from "react-bootstrap";
 import { FormatData } from "../../Utils/FormatacaoDeDados/FormatData";
 import { FormatHorario } from "../../Utils/FormatacaoDeDados/FormatHorario";
 import AutoComplete from "../../Components/AutoComplete";
+import { ToastContainer, toast } from "react-toastify";
 
 const AgendarConsulta = () => {
   //Auto-Complete - Start
   const [teclaPressionada, setTeclaPressionada] = useState("");
   const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([]);
   const [optionsAutoComplete2, setOptionsAutoComplete2] = useState([]);
+  const [userData, setUserData] = useState({
+    data: "",
+    horario: "",
+    paciente_id: null, 
+    medico_id: null, 
+    dados: "",
+  });
 
   const listUsers = () => {
     axios
@@ -56,9 +64,40 @@ const AgendarConsulta = () => {
   //Auto-Complete - End
 
   //Create Appointment - Start
+  const handleSaveAppointment = () => {
+    axios
+      .post("/api/createAppointment", userData)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data === "1") {
+          toast.success("Consulta agendada com sucesso", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } else if (response.data === "2") {
+          toast.warning("Erro ao agendar a consulta.", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Erro ao agendar consulta: " + error);
+      });
+  };
   //Create Appointment - End
   return (
     <ContainerPrincipalPagina fluid>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Recepcionista"}
         PaginaDoSistema={"Agendamento de consultas"}
@@ -123,7 +162,8 @@ const AgendarConsulta = () => {
           </BoxGroupInput>
 
           <DivButtonSalvar>
-            <ButtonSalvar>Salvar</ButtonSalvar>
+            <ButtonSalvar onClick={handleSaveAppointment}>Salvar</ButtonSalvar>
+            <button onClick={() => console.log(userData)}>Console</button>
           </DivButtonSalvar>
         </Col>
 

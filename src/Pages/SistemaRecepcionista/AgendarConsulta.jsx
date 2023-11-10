@@ -16,29 +16,32 @@ import { FormatHorario } from "../../Utils/FormatacaoDeDados/FormatHorario";
 import AutoComplete from "../../Components/AutoComplete";
 
 const AgendarConsulta = () => {
-//Auto-Complete - Start
+  //Auto-Complete - Start
   const [teclaPressionada, setTeclaPressionada] = useState("");
   const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([]);
   const [optionsAutoComplete2, setOptionsAutoComplete2] = useState([]);
 
-  const listUsers = async () => {
-    try {
-      const response = await axios.get("/api/getUsers");
-      if (response.status === 200) {
-        const data = response.data;
-        const patientUsersList = data.filter(users => users.userType === "Paciente").map((user) => ({ nome: user.username, id: user.userID }));
-        const medicUsersList = data.filter(users => users.userType === "Medico").map((user) => ({ nome: user.username, id: user.userID }));
-        console.log(patientUsersList)
-        console.log(medicUsersList)
-        setOptionsAutoComplete1(patientUsersList)
-        setOptionsAutoComplete2(medicUsersList)
-      } else {
-        console.error("Erro ao buscar os usuários.");
-      }
-    } catch (error) {
-      console.error("Erro ao buscar os usuários: " + error);
-    }
+  const listUsers = () => {
+    axios
+      .get("/api/getUsers")
+      .then((resp) => {
+        const data = resp.data;
+        const patientUsersList = data
+          .filter((users) => users.userType === "Paciente")
+          .map((user) => ({ nome: user.username, id: user.userID }));
+        const medicUsersList = data
+          .filter((users) => users.userType === "Medico")
+          .map((user) => ({ nome: user.username, id: user.userID }));
+        console.log(patientUsersList);
+        console.log(medicUsersList);
+        setOptionsAutoComplete1(patientUsersList);
+        setOptionsAutoComplete2(medicUsersList);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar os usuários: " + error);
+      });
   };
+
   useEffect(() => {
     listUsers();
   }, []);
@@ -50,10 +53,10 @@ const AgendarConsulta = () => {
   const handleSelectOptionSearch2 = (value) => {
     console.log(value);
   };
-//Auto-Complete - End
+  //Auto-Complete - End
 
-//Create Appointment - Start
-//Create Appointment - End
+  //Create Appointment - Start
+  //Create Appointment - End
   return (
     <ContainerPrincipalPagina fluid>
       <HeaderPrincipal

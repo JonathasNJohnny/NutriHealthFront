@@ -36,13 +36,19 @@ const CadastroPaciente = () => {
       .post("/api/createUser", userData)
       .then((response) => {
         console.log(response.data);
-        if (response.data == 1) {
-          toast.success("Usuário cadastrado com sucesso", {position: toast.POSITION.TOP_RIGHT, });
-        }
-        else if (response.data == 2) {
-          toast.warning("Usuário já cadastrado no sistema!", {position: toast.POSITION.TOP_RIGHT, });
+        if (response.data === 1) {
+          toast.success("Usuário cadastrado com sucesso", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+        } else if (response.data === 2) {
+          toast.warning("Usuário já cadastrado no sistema!", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
         } else {
-          toast.error("Erro desconhecido, caso não consiga criar um usuário, contate o suporte", {position: toast.POSITION.TOP_RIGHT, });
+          toast.error(
+            "Erro desconhecido, caso não consiga criar um usuário, contate o suporte",
+            { position: toast.POSITION.TOP_RIGHT }
+          );
         }
       })
       .catch((error) => {

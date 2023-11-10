@@ -4,11 +4,28 @@
   font-family: "Codec Pro", sans-serif;
 }
 
-body#corpo,
+/* body#corpo,
 html {
   margin: 0;
   height: 100%;
   min-width: 577px;
+  background-image: url("/src/images/backgroundLogin.jpg");
+  background-size: cover;
+} */
+
+body#corpo::before,
+html::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("/src/images/backgroundLogin.jpg");
+  background-size: cover;
+  filter: blur(5px);
+  opacity: 0.8; /* Ajuste o valor de opacidade conforme necessário */
+  z-index: -1; /* Coloque o pseudo-elemento atrás do conteúdo */
 }
 
 div#container_login {

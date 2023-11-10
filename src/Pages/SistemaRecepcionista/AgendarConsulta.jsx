@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   ContainerPrincipalPagina,
   FormControlPagsGerais,
@@ -15,31 +16,32 @@ import { FormatHorario } from "../../Utils/FormatacaoDeDados/FormatHorario";
 import AutoComplete from "../../Components/AutoComplete";
 
 const AgendarConsulta = () => {
+//Auto-Complete - Start
   const [teclaPressionada, setTeclaPressionada] = useState("");
+  const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([]);
+  const [optionsAutoComplete2, setOptionsAutoComplete2] = useState([]);
 
-  const [optionsAutoComplete1, setOptionsAutoComplete1] = useState([
-    //APENAS UMA BASE, AS OPTIONS VIRAO DO BANCO DE DADOS
-    { nome: "Engels", id: 0 },
-    { nome: "João Vitor", id: 1 },
-    { nome: "Kauã", id: 2 },
-    { nome: "Danilo", id: 3 },
-    { nome: "Jonathas", id: 4 },
-    { nome: "Teste 1", id: 5 },
-    { nome: "Teste 2", id: 6 },
-    { nome: "Teste 3", id: 7 },
-  ]);
-
-  const [optionsAutoComplete2, setOptionsAutoComplete2] = useState([
-    //APENAS UMA BASE, AS OPTIONS VIRAO DO BANCO DE DADOS
-    { nome: "Teste 2", id: 0 },
-    { nome: "Teste 3", id: 1 },
-    { nome: "Teste 4", id: 2 },
-    { nome: "Teste 5", id: 3 },
-    { nome: "Teste 6", id: 4 },
-    { nome: "Teste 7", id: 5 },
-    { nome: "Teste 8", id: 6 },
-    { nome: "Teste 9", id: 7 },
-  ]);
+  const listUsers = async () => {
+    try {
+      const response = await axios.get("/api/getUsers");
+      if (response.status === 200) {
+        const data = response.data;
+        const patientUsersList = data.filter(users => users.userType === "Paciente").map((user) => ({ nome: user.username, id: user.userID }));
+        const medicUsersList = data.filter(users => users.userType === "Medico").map((user) => ({ nome: user.username, id: user.userID }));
+        console.log(patientUsersList)
+        console.log(medicUsersList)
+        setOptionsAutoComplete1(patientUsersList)
+        setOptionsAutoComplete2(medicUsersList)
+      } else {
+        console.error("Erro ao buscar os usuários.");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar os usuários: " + error);
+    }
+  };
+  useEffect(() => {
+    listUsers();
+  }, []);
 
   const handleSelectOptionSearch1 = (value) => {
     console.log(value);
@@ -48,7 +50,10 @@ const AgendarConsulta = () => {
   const handleSelectOptionSearch2 = (value) => {
     console.log(value);
   };
+//Auto-Complete - End
 
+//Create Appointment - Start
+//Create Appointment - End
   return (
     <ContainerPrincipalPagina fluid>
       <HeaderPrincipal

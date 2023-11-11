@@ -22,10 +22,11 @@ const AutoComplete = ({ options, handleSelectOptionSearch }) => {
   };
 
   const handleClickResult = (item) => {
-    handleSelectOptionSearch(item.nome);
+    handleSelectOptionSearch(item.id);
     setFilterSearch([]);
     setConditionArray(false);
     setInputSearch(item.nome);
+    console.log(item.id)
   };
 
   useEffect(() => {

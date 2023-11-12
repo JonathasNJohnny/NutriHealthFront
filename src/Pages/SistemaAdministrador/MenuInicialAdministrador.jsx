@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 
 const MenuInicialAdministrador = () => {
   return (
-    <ContainerPrincipalPagina fluid>
+    <ContainerPrincipalPagina fluid id="container_principal">
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Administrador"}
         PaginaDoSistema={"Menu"}

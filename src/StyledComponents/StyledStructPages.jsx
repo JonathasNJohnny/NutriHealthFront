@@ -20,6 +20,7 @@ export const BoxInfosHeaderPrincipal = styled.div`
 export const ColHeaderPrincipal = styled(Col)`
   display: flex;
   justify-content: space-between;
+  padding: 0px;
 `;
 
 export const TituloTipoDeUsuarioHeader = styled.h4`
@@ -39,8 +40,6 @@ export const BoxIconHeader = styled.div`
 export const RowMenusIniciais = styled(Row)`
   background-color: #e4ab97;
   align-items: center;
-  margin-right: 2px;
-  margin-left: 2px;
   margin-top: 25px;
   border-radius: 20px;
   padding: 50px;
@@ -49,18 +48,14 @@ export const RowMenusIniciais = styled(Row)`
 
 export const RowConteudoPagina = styled(Row)`
   background-color: #e4ab97;
-  margin-right: 2px;
-  margin-left: 2px;
   margin-top: 25px;
   border-radius: 20px;
-  height: 421px;
   padding: 20px 10px;
 `;
 
 export const ColLista = styled(Col)`
   background-color: #e4ab97;
-  margin-right: 2px;
-  margin-left: 12px;
+
   border-radius: 20px;
   height: 500px;
   padding: 0px;
@@ -124,6 +119,7 @@ export const BoxOpcaoMenu = styled.div`
 export const IconStyled = styled(Icon)`
   color: white;
   transition: 0.5s;
+  cursor: pointer;
 `;
 
 export const TitulosMenus = styled.h4`
@@ -170,6 +166,10 @@ export const FormControlPagsGerais = styled(FormControl)`
     outline: none;
   }
 
+  &:disabled {
+    background-color: #dfdfdf;
+  }
+
   /* Definir a largura da barra de rolagem */
   &::-webkit-scrollbar {
     width: 5px; /* Substitua pelo valor desejado */
@@ -183,6 +183,39 @@ export const FormControlPagsGerais = styled(FormControl)`
   &::-webkit-scrollbar-track {
     background-color: #f2f2f2; /* Cor do track */
     border-radius: 20px;
+  }
+`;
+
+export const InputFileStyled = styled.input`
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+
+  & + label {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    height: 38px;
+    font-weight: 500;
+    padding-left: 12px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #b6b6b6;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    align-items: center;
+    transition: all 0.5s;
+  }
+
+  & + label:hover {
+    background-color: rgba(228, 247, 253, 0.4);
+  }
+
+  & + label {
+    cursor: pointer; /* "hand" cursor */
   }
 `;
 

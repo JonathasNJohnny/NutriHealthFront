@@ -7,6 +7,9 @@ import MenuInicialRecepcionista from "../Pages/SistemaRecepcionista/MenuInicialR
 import AgendarConsulta from "../Pages/SistemaRecepcionista/AgendarConsulta";
 import CadastroPaciente from "../Pages/SistemaRecepcionista/CadastroPaciente";
 import ListaPacientes from "../Pages/SistemaRecepcionista/ListaPacientes";
+import MenuInicialMedico from "../Pages/SistemaMedico/MenuInicialMedico";
+import ListaConsultasMedico from "../Pages/SistemaMedico/ListaConsultasMedico";
+import RelatorioConsultaCadastro from "../Pages/SistemaMedico/RelatorioConsultaCadastro";
 
 function Rotas() {
   return (
@@ -58,6 +61,22 @@ function Rotas() {
         <Route
           path="/recepcionista/lista-pacientes"
           element={<ListaPacientes />}
+        />
+      </Routes>
+
+      <Routes>
+        <Route path="/medico/menu" element={<MenuInicialMedico />} />
+      </Routes>
+      <Routes>
+        <Route
+          path="/medico/gerenciamento-consultas/lista"
+          element={<ListaConsultasMedico />}
+        />
+      </Routes>
+      <Routes>
+        <Route
+          path="/medico/gerenciamento-consultas/relatorio/:idConsulta"
+          element={<RelatorioConsultaCadastro />}
         />
       </Routes>
     </Router>

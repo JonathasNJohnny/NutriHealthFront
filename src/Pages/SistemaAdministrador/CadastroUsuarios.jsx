@@ -58,7 +58,7 @@ const CadastroUsuarios = () => {
   };
 
   return (
-    <ContainerPrincipalPagina fluid>
+    <ContainerPrincipalPagina fluid id="container_principal">
       <ToastContainer
         position="top-right"
         autoClose={5000}

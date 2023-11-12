@@ -20,8 +20,10 @@ const ListaPacientes = () => {
       const response = await axios.get("/api/getUsers");
       if (response.status === 200) {
         const data = response.data;
-        const patientUsersList = data.filter(users => users.userType === "Paciente");
-        console.log(patientUsersList)
+        const patientUsersList = data.filter(
+          (users) => users.userType === "Paciente"
+        );
+        console.log(patientUsersList);
         setUsers(patientUsersList);
       } else {
         console.error("Erro ao buscar os usuários.");
@@ -30,12 +32,12 @@ const ListaPacientes = () => {
       console.error("Erro ao buscar os usuários: " + error);
     }
   };
-  
+
   useEffect(() => {
     listUsers();
   }, []);
   return (
-    <ContainerPrincipalPagina fluid>
+    <ContainerPrincipalPagina fluid id="container_principal">
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Recepcionista"}
         PaginaDoSistema={"Lista de Pacientes"}
@@ -55,7 +57,10 @@ const ListaPacientes = () => {
                 {users.map((user) => (
                   <tr key={user.userID}>
                     <td>{user.username}</td>
-                    <td>{user.city} - {user.state}<br/> {user.neighborhood} - {user.street}</td>
+                    <td>
+                      {user.city} - {user.state}
+                      <br /> {user.neighborhood} - {user.street}
+                    </td>
                     <td>{user.number}</td>
                   </tr>
                 ))}

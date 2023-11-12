@@ -12,40 +12,22 @@ import {
 import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { NavLink } from "react-router-dom";
 
-const MenuInicialRecepcionista = () => {
+const MenuInicialMedico = () => {
   return (
     <ContainerPrincipalPagina fluid id="container_principal">
       <HeaderPrincipal
-        TipoDeUsuarioSistema={"Recepcionista"}
+        TipoDeUsuarioSistema={"Médico"}
         PaginaDoSistema={"Menu"}
       />
 
       <RowMenusIniciais className="justify-content-center">
         <Col className="col-auto">
           <DivOpcaoMenu>
-            <NavLink to={"/recepcionista/lista-pacientes"}>
+            <NavLink to={"/medico/gerenciamento-consultas/lista"}>
               <BoxOpcaoMenu>
                 <IconStyled
                   className="icon-menu"
-                  icon="ri:user-fill"
-                  height={100}
-                />
-              </BoxOpcaoMenu>
-            </NavLink>
-          </DivOpcaoMenu>
-
-          <DivTituloMenu>
-            <TitulosMenus>Gerenciamento de Pacientes</TitulosMenus>
-          </DivTituloMenu>
-        </Col>
-
-        <Col className="col-auto">
-          <DivOpcaoMenu>
-            <NavLink to={"/recepcionista/agendar-consulta"}>
-              <BoxOpcaoMenu>
-                <IconStyled
-                  className="icon-menu"
-                  icon="fluent-emoji-high-contrast:spiral-calendar"
+                  icon="fluent:notepad-edit-16-regular"
                   height={100}
                 />
               </BoxOpcaoMenu>
@@ -61,4 +43,4 @@ const MenuInicialRecepcionista = () => {
   );
 };
 
-export default MenuInicialRecepcionista;
+export default MenuInicialMedico;

@@ -37,12 +37,15 @@ const Login = () => {
       if (data !== null) {
         if (data.user_type === "Administrador") {
           navigate("/administrador/menu");
-        }
-        else if (data.user_type === "Recepcionista") {
+        } else if (data.user_type === "Recepcionista") {
           navigate("/recepcionista/menu");
+        } else if (data.user_type === "Medico") {
+          navigate("/medico/menu");
         }
       } else {
-        toast.error("Falha no login. Nome de usuário ou senha incorretos", {position: toast.POSITION.TOP_RIGHT, });
+        toast.error("Falha no login. Nome de usuário ou senha incorretos", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }
     } catch (error) {}
   };

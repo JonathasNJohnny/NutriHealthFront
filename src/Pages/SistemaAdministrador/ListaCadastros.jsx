@@ -28,13 +28,13 @@ const ListaCadastros = () => {
       console.error("Erro ao buscar os usuários: " + error);
     }
   };
-  
+
   useEffect(() => {
     listUsers();
   }, []);
 
   return (
-    <ContainerPrincipalPagina fluid>
+    <ContainerPrincipalPagina fluid id="container_principal">
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Administrador"}
         PaginaDoSistema={"Lista de Usuários"}
@@ -54,7 +54,10 @@ const ListaCadastros = () => {
                 {users.map((user) => (
                   <tr key={user.userID}>
                     <td>{user.username}</td>
-                    <td>{user.city} - {user.state}<br/> {user.neighborhood} - {user.street}</td>
+                    <td>
+                      {user.city} - {user.state}
+                      <br /> {user.neighborhood} - {user.street}
+                    </td>
                     <td>{user.number}</td>
                   </tr>
                 ))}

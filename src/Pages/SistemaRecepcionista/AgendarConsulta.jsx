@@ -55,16 +55,27 @@ const AgendarConsulta = () => {
   }, []);
 
   const handleSelectOptionSearch1 = (value) => {
-    console.log(value);
+    setUserData(prevValues => ({
+      ...prevValues,
+      paciente_id: value
+    }))
+
+    console.log("select 1")
   };
 
   const handleSelectOptionSearch2 = (value) => {
-    console.log(value);
+    setUserData(prevValues => ({
+      ...prevValues,
+      medico_id: value
+    }))
+
+    console.log("select 1")
   };
   //Auto-Complete - End
 
   //Create Appointment - Start
   const handleSaveAppointment = () => {
+    console.log(userData)
     axios
       .post("/api/createAppointment", userData)
       .then((response) => {
@@ -117,6 +128,11 @@ const AgendarConsulta = () => {
                       const valorFormatado = FormatData(e.target.value);
                       e.target.value = valorFormatado;
                     }
+
+                    setUserData(prevValues => ({
+                      ...prevValues,
+                      data: e.target.value
+                    }))
                   }}
                 />
               </BoxGroupInput>
@@ -133,6 +149,11 @@ const AgendarConsulta = () => {
                       const valorFormatado = FormatHorario(e.target.value);
                       e.target.value = valorFormatado;
                     }
+
+                    setUserData(prevValues => ({
+                      ...prevValues,
+                      horario: e.target.value
+                    }))
                   }}
                 />
               </BoxGroupInput>
@@ -158,7 +179,12 @@ const AgendarConsulta = () => {
         <Col md={6}>
           <BoxGroupInput>
             <TituloInput>Motivo da Consulta (Opcional)</TituloInput>
-            <FormControlPagsGerais as="textarea" className="textarea_form" />
+            <FormControlPagsGerais as="textarea" className="textarea_form" onChange={(e) => {
+              setUserData(prevValues => ({
+                ...prevValues,
+                dados: e.target.value
+              }))
+            }}/>
           </BoxGroupInput>
 
           <DivButtonSalvar>

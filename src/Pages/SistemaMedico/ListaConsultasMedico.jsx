@@ -51,7 +51,7 @@ const ListaConsultasMedico = () => {
 
               <tbody>
                 {consultas.map((item) => (
-                  <tr key={item.idConsulta}>
+                  <tr key={item.appointmentID}>
                     <td>{item.patientName}</td>
                     <td>{item.date}</td>
                     <td>{item.reason}</td>

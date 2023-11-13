@@ -45,20 +45,19 @@ const CadastroUsuarios = () => {
           toast.warning("Usuário já cadastrado no sistema!", {
             position: toast.POSITION.TOP_RIGHT,
           });
-        } else {
-          toast.error(
-            "Erro desconhecido, caso não consiga criar um usuário, contate o suporte",
-            { position: toast.POSITION.TOP_RIGHT }
-          );
         }
       })
       .catch((error) => {
         console.error("Erro ao criar usuário: " + error);
+        toast.error(
+          "Erro desconhecido, caso não consiga criar um usuário, contate o suporte", { 
+            position: toast.POSITION.TOP_RIGHT
+          });
       });
   };
 
   return (
-    <ContainerPrincipalPagina fluid id="container_principal">
+    <ContainerPrincipalPagina fluid>
       <ToastContainer
         position="top-right"
         autoClose={5000}

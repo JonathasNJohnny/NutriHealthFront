@@ -25,8 +25,6 @@ const ListaPacientes = () => {
         );
         console.log(patientUsersList);
         setUsers(patientUsersList);
-      } else {
-        console.error("Erro ao buscar os usuários.");
       }
     } catch (error) {
       console.error("Erro ao buscar os usuários: " + error);
@@ -36,6 +34,7 @@ const ListaPacientes = () => {
   useEffect(() => {
     listUsers();
   }, []);
+
   return (
     <ContainerPrincipalPagina fluid id="container_principal">
       <HeaderPrincipal

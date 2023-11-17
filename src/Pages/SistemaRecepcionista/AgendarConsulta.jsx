@@ -24,8 +24,8 @@ const AgendarConsulta = () => {
   const [userData, setUserData] = useState({
     data: "",
     horario: "",
-    paciente_id: null,
-    medico_id: null,
+    paciente_id: null, 
+    medico_id: null, 
     dados: "",
   });
 
@@ -80,11 +80,11 @@ const AgendarConsulta = () => {
       .post("/api/createAppointment", userData)
       .then((response) => {
         console.log(response.data);
-        if (response.data === "1") {
+        if (response.data === 1) {
           toast.success("Consulta agendada com sucesso", {
             position: toast.POSITION.TOP_RIGHT,
           });
-        } else if (response.data === "2") {
+        } else if (response.data === 2) {
           toast.warning("Erro ao agendar a consulta.", {
             position: toast.POSITION.TOP_RIGHT,
           });
@@ -92,11 +92,12 @@ const AgendarConsulta = () => {
       })
       .catch((error) => {
         console.error("Erro ao agendar consulta: " + error);
+        toast.error("Erro desconhecido, caso não consiga criar um usuário, contate o suporte",{ position: toast.POSITION.TOP_RIGHT })
       });
   };
   //Create Appointment - End
   return (
-    <ContainerPrincipalPagina fluid id="container_principal">
+    <ContainerPrincipalPagina fluid>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -189,7 +190,6 @@ const AgendarConsulta = () => {
 
           <DivButtonSalvar>
             <ButtonSalvar onClick={handleSaveAppointment}>Salvar</ButtonSalvar>
-            <button onClick={() => console.log(userData)}>Console</button>
           </DivButtonSalvar>
         </Col>
 

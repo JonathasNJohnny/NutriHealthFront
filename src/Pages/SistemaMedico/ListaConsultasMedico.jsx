@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   ContainerPrincipalPagina,
   ColLista,
@@ -12,44 +13,23 @@ import { Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const ListaConsultasMedico = () => {
-  const [consultas, setConsultas] = useState([
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 1,
-    },
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 2,
-    },
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 3,
-    },
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 4,
-    },
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 5,
-    },
-    {
-      pacienteNome: "Engels",
-      data: "12/11/2023",
-      motivoConsulta: "Qualquer",
-      idConsulta: 6,
-    },
-  ]);
+  const [consultas, setConsultas] = useState([]);
+
+  const listUsers = async () => {
+    try {
+      const response = await axios.get("/api/getAppointments");
+      if (response.status === 200) {
+        console.log(response.data)
+        setConsultas(response.data);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar os usuários: " + error);
+    }
+  };
+
+  useEffect(() => {
+    listUsers();
+  }, []);//
 
   return (
     <ContainerPrincipalPagina fluid id="container_principal">
@@ -71,13 +51,13 @@ const ListaConsultasMedico = () => {
 
               <tbody>
                 {consultas.map((item) => (
-                  <tr key={item.idConsulta}>
-                    <td>{item.pacienteNome}</td>
-                    <td>{item.data}</td>
-                    <td>{item.motivoConsulta}</td>
+                  <tr key={item.appointmentID}>
+                    <td>{item.patientName}</td>
+                    <td>{item.date}</td>
+                    <td>{item.reason}</td>
                     <td style={{ textAlign: "center" }}>
                       <NavLink
-                        to={`/medico/gerenciamento-consultas/relatorio/${item.idConsulta}`}
+                        to={`/medico/gerenciamento-consultas/relatorio/${item.appointmentID}`}
                       >
                         <IconStyled
                           className="icon-menu"

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   BoxGroupInput,
   ContainerPrincipalPagina,
@@ -16,12 +17,40 @@ import { useParams } from "react-router-dom";
 
 const RelatorioConsultaCadastro = () => {
   const { idConsulta } = useParams();
+  const [consulta, setConsulta] = useState({});
 
+  //Obter os dados da consulta - Start
   useEffect(() => {
-    if (idConsulta !== "" && idConsulta !== undefined) {
-      console.log(`id da consulta: ${idConsulta} (apenas para fins de teste)`);
-    }
+    const getConsulta = async () => {
+      try {
+        const response = await axios.get(`/api/getAppointment?appointment_id=${idConsulta}`);
+        if (response.status === 200) {
+          setConsulta(response.data);
+        }
+      } 
+      catch (error) {
+        console.error("Erro ao obter consulta:", error);
+      }
+    };
+
+    getConsulta();
   }, [idConsulta]);
+  console.log(consulta)
+  //Obter os dados da consulta - End
+
+  //Atualizar os dados da consulta = Start
+  const HandleUpdateAppointmentData = async () => {
+    try {
+      const response = await axios.put('/api/updateAppointmentData', {
+        consulta_id: idConsulta,
+        dados: consulta.data
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Erro ao atualizar dados da consulta:', error);
+    }
+  };
+  //Atualizar os dados da consulta = End
 
   return (
     <ContainerPrincipalPagina fluid id="container_principal">
@@ -40,7 +69,7 @@ const RelatorioConsultaCadastro = () => {
           <Col md={3}>
             <BoxGroupInput>
               <TituloInput>Nome do Paciente</TituloInput>
-              <FormControlPagsGerais disabled value={"Nome Paciente"} />
+              <FormControlPagsGerais disabled value={consulta.patientName} />
             </BoxGroupInput>
           </Col>
           <Col md={3}>
@@ -49,7 +78,7 @@ const RelatorioConsultaCadastro = () => {
               <FormControlPagsGerais
                 disabled
                 style={{ textAlign: "center" }}
-                value={"12/11/2023"}
+                value={consulta.date}
               />
             </BoxGroupInput>
           </Col>
@@ -59,7 +88,11 @@ const RelatorioConsultaCadastro = () => {
           <Col md={12}>
             <BoxGroupInput>
               <TituloInput>Relatorio da Consulta</TituloInput>
-              <FormControlPagsGerais as="textarea" className="textarea_form" />
+              <FormControlPagsGerais 
+              as="textarea" 
+              className="textarea_form" 
+              value={consulta.data}
+              onChange={(e) => setConsulta({ ...consulta, data: e.target.value })} />
             </BoxGroupInput>
           </Col>
         </Row>
@@ -83,13 +116,7 @@ const RelatorioConsultaCadastro = () => {
         <Row style={{ padding: "0px", margin: "0px" }}>
           <Col md={12}>
             <DivButtonSalvar>
-              <ButtonSalvar
-                onClick={() => {
-                  alert("sem funcao ainda");
-                }}
-              >
-                Salvar
-              </ButtonSalvar>
+            <ButtonSalvar onClick={HandleUpdateAppointmentData}>Salvar</ButtonSalvar>
             </DivButtonSalvar>
           </Col>
         </Row>

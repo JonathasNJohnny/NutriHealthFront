@@ -24,27 +24,28 @@ const RelatorioConsultaCadastro = () => {
   useEffect(() => {
     const getConsulta = async () => {
       try {
-        const response = await axios.get(`/api/getAppointment?appointment_id=${idConsulta}`);
+        const response = await axios.get(
+          `/api/getAppointment?appointment_id=${idConsulta}`
+        );
         if (response.status === 200) {
           setConsulta(response.data);
         }
-      } 
-      catch (error) {
+      } catch (error) {
         console.error("Erro ao obter consulta:", error);
       }
     };
 
     getConsulta();
   }, [idConsulta]);
-  console.log(consulta)
+  console.log(consulta);
   //Obter os dados da consulta - End
 
   //Atualizar os dados da consulta = Start
   const HandleUpdateAppointmentData = async () => {
     try {
-      const response = await axios.put('/api/updateAppointmentData', {
+      const response = await axios.put("/api/updateAppointmentData", {
         consulta_id: idConsulta,
-        dados: consulta.data
+        dados: consulta.data,
       });
       if (response.data === 1) {
         toast.success("O relatório da consulta foi salvo com sucesso!", {
@@ -109,11 +110,17 @@ const RelatorioConsultaCadastro = () => {
           <Col md={12}>
             <BoxGroupInput>
               <TituloInput>Relatorio da Consulta</TituloInput>
-              <FormControlPagsGerais 
-              as="textarea" 
-              className="textarea_form" 
-              value={consulta.data}
-              onChange={(e) => setConsulta({ ...consulta, data: e.target.value })} />
+              <FormControlPagsGerais
+                as="textarea"
+                className="textarea_form"
+                value={consulta.data}
+                onChange={(e) =>
+                  setConsulta((prevValues) => ({
+                    ...prevValues,
+                    data: e.target.value,
+                  }))
+                }
+              />
             </BoxGroupInput>
           </Col>
         </Row>
@@ -137,7 +144,9 @@ const RelatorioConsultaCadastro = () => {
         <Row style={{ padding: "0px", margin: "0px" }}>
           <Col md={12}>
             <DivButtonSalvar>
-            <ButtonSalvar onClick={HandleUpdateAppointmentData}>Salvar</ButtonSalvar>
+              <ButtonSalvar onClick={HandleUpdateAppointmentData}>
+                Salvar
+              </ButtonSalvar>
             </DivButtonSalvar>
           </Col>
         </Row>

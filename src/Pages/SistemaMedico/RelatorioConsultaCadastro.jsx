@@ -14,6 +14,7 @@ import HeaderPrincipal from "../../Components/HeaderPrincipal";
 import { Col, Row } from "react-bootstrap";
 import { Icon } from "@iconify/react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const RelatorioConsultaCadastro = () => {
   const { idConsulta } = useParams();
@@ -46,15 +47,35 @@ const RelatorioConsultaCadastro = () => {
         consulta_id: idConsulta,
         dados: consulta.data,
       });
+      if (response.data === 1) {
+        toast.success("O relatório da consulta foi salvo com sucesso!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
       console.log(response.data);
     } catch (error) {
-      console.error("Erro ao atualizar dados da consulta:", error);
+      toast.error("O relatório da consulta não foi salvo por um erro no sistema.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      console.error('Erro ao atualizar dados da consulta:', error);
     }
   };
   //Atualizar os dados da consulta = End
 
   return (
     <ContainerPrincipalPagina fluid id="container_principal">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <HeaderPrincipal
         TipoDeUsuarioSistema={"Médico"}
         PaginaDoSistema={"Relatorio da Consulta"}

@@ -4,14 +4,10 @@
   font-family: "Codec Pro", sans-serif;
 }
 
-/* body#corpo,
+body#corpo,
 html {
-  margin: 0;
-  height: 100%;
-  min-width: 577px;
-  background-image: url("/src/images/backgroundLogin.jpg");
-  background-size: cover;
-} */
+  background-color: #f2f3f8;
+}
 
 div#container_login {
   background-image: url("/src/images/backgroundLogin.jpg");

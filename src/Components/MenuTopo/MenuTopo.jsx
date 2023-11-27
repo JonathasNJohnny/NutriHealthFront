@@ -39,7 +39,7 @@ const MenuTopo = () => {
             alignItems: "center",
           }}
         >
-          <span style={{ fontSize: "1.4em", color: "#6f3f2d" }}>Olá,</span>
+          <span style={{ fontSize: "1.4em", color: "#6f3f2d" }}>Olá,&nbsp;</span>
           <span style={{ fontSize: "1.4em", color: "#6f3f2d" }}>
             {nomeUsuario}
           </span>

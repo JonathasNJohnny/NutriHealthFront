@@ -42,6 +42,9 @@ const Login = () => {
         } else if (data.user_type === "Medico") {
           navigate("/medico/menu");
         }
+        else if (data.user_type === "Paciente") {
+          navigate("/paciente/consultas/solicitar-agendamento");
+        }
       } else {
         toast.error("Falha no login. Nome de usuário ou senha incorretos", {
           position: toast.POSITION.TOP_RIGHT,

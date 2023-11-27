@@ -15,6 +15,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const CadastroUsuarios = () => {
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -33,6 +34,10 @@ const CadastroUsuarios = () => {
   };
 
   const handleSaveUser = () => {
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 5000);
     axios
       .post("/api/createUser", userData)
       .then((response) => {
@@ -175,7 +180,7 @@ const CadastroUsuarios = () => {
           </BoxGroupInput>
 
           <DivButtonSalvar>
-            <ButtonSalvar onClick={handleSaveUser}>Salvar</ButtonSalvar>
+            <ButtonSalvar onClick={handleSaveUser} disabled={isButtonDisabled}>Salvar</ButtonSalvar>
           </DivButtonSalvar>
         </Col>
       </RowConteudoPagina>
